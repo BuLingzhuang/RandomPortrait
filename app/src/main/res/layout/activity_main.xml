@@ -8,11 +8,13 @@
     tools:context="com.bulingzhuang.randomportrait.MainActivity">
 
     <RelativeLayout
+        android:id="@+id/ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
         android:background="@drawable/bg"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <com.bulingzhuang.randomportrait.RandomPortraitView
             android:id="@+id/rpv"
@@ -32,5 +34,30 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp"
-        android:text="随机"/>
+        android:text="随机"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:id="@+id/code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_light"
+        android:paddingBottom="8dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="8dp"
+        android:text=""
+        android:textColor="@color/colorPrimary"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn"
+        android:layout_below="@id/code">
+
+    </RelativeLayout>
+
 </RelativeLayout>

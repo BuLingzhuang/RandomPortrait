@@ -2,7 +2,7 @@ package com.bulingzhuang.randomportrait
 
 import android.content.Context
 import android.graphics.*
-import android.support.v4.content.ContextCompat
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -22,36 +22,32 @@ class RandomPortraitView : View {
     var mPortraitPaint: Paint = Paint()
     var mHalfStr: String = ""
     var mCenterStr: String = ""
-    var colorList = listOf(R.color.red500, R.color.pink500, R.color.purple500, R.color.deeppurple500,
-            R.color.indigo500, R.color.blue500, R.color.lightblue500, R.color.cyan500,
-            R.color.teal500, R.color.green500, R.color.lightgreen500, R.color.lime500,
-            R.color.yellow500, R.color.amber500, R.color.orange500, R.color.deeporange500,
-            R.color.brown500, R.color.grey500, R.color.bluegrey500, R.color.red400, R.color.pink400, R.color.purple400, R.color.deeppurple400,
-            R.color.indigo400, R.color.blue400, R.color.lightblue400, R.color.cyan400,
-            R.color.teal400, R.color.green400, R.color.lightgreen400, R.color.lime400,
-            R.color.yellow400, R.color.amber400, R.color.orange400, R.color.deeporange400,
-            R.color.brown400, R.color.grey400, R.color.bluegrey400, R.color.red300, R.color.pink300, R.color.purple300, R.color.deeppurple300,
-            R.color.indigo300, R.color.blue300, R.color.lightblue300, R.color.cyan300,
-            R.color.teal300, R.color.green300, R.color.lightgreen300, R.color.lime300,
-            R.color.yellow300, R.color.amber300, R.color.orange300, R.color.deeporange300,
-            R.color.brown300, R.color.grey300, R.color.bluegrey300, R.color.red200, R.color.pink200, R.color.purple200, R.color.deeppurple200,
-            R.color.indigo200, R.color.blue200, R.color.lightblue200, R.color.cyan200,
-            R.color.teal200, R.color.green200, R.color.lightgreen200, R.color.lime200,
-            R.color.yellow200, R.color.amber200, R.color.orange200, R.color.deeporange200,
-            R.color.brown200, R.color.grey200, R.color.bluegrey200, R.color.red800, R.color.pink800, R.color.purple800, R.color.deeppurple800,
-            R.color.indigo800, R.color.blue800, R.color.lightblue800, R.color.cyan800,
-            R.color.teal800, R.color.green800, R.color.lightgreen800, R.color.lime800,
-            R.color.yellow800, R.color.amber800, R.color.orange800, R.color.deeporange800,
-            R.color.brown800, R.color.grey800, R.color.bluegrey800, R.color.red600, R.color.pink600, R.color.purple600, R.color.deeppurple600,
-            R.color.indigo600, R.color.blue600, R.color.lightblue600, R.color.cyan600,
-            R.color.teal600, R.color.green600, R.color.lightgreen600, R.color.lime600,
-            R.color.yellow600, R.color.amber600, R.color.orange600, R.color.deeporange600,
-            R.color.brown600, R.color.grey600, R.color.bluegrey600, R.color.red700, R.color.pink700, R.color.purple700, R.color.deeppurple700,
-            R.color.indigo700, R.color.blue700, R.color.lightblue700, R.color.cyan700,
-            R.color.teal700, R.color.green700, R.color.lightgreen700, R.color.lime700,
-            R.color.yellow700, R.color.amber700, R.color.orange700, R.color.deeporange700,
-            R.color.brown700, R.color.grey700, R.color.bluegrey700)
-    var color: Int = 0
+    var colorList = listOf("#f69988", "#f36c60", "#e84e40", "#e51c23", "#dd191d", "#d01716", "#c41411",
+            "#f48fb1", "#f06292", "#ec407a", "#e91e63", "#d81b60", "#c2185b", "#ad1457",
+            "#ce93d8", "#ba68c8", "#ab47bc", "#9c27b0", "#8e24aa", "#7b1fa2", "#6a1b9a",
+            "#b39ddb", "#9575cd", "#7e57c2", "#673ab7", "#5e35b1", "#512da8", "#4527a0",
+            "#9fa8da", "#7986cb", "#5c6bc0", "#3f51b5", "#3949ab", "#303f9f", "#283593",
+            "#afbfff", "#91a7ff", "#738ffe", "#5677fc", "#4e6cef", "#455ede", "#3b50ce",
+            "#81d4fa", "#4fc3f7", "#29b6f6", "#03a9f4", "#039be5", "#0288d1", "#0277bd",
+            "#80deea", "#4dd0e1", "#26c6da", "#00bcd4", "#00acc1", "#0097a7", "#00838f",
+            "#80cbc4", "#4db6ac", "#26a69a", "#009688", "#00897b", "#00796b", "#00695c",
+            "#72d572", "#42bd41", "#2baf2b", "#259b24", "#0a8f08", "#0a7e07", "#056f00",
+            "#c5e1a5", "#aed581", "#9ccc65", "#8bc34a", "#7cb342", "#689f38", "#558b2f",
+            "#e6ee9c", "#dce775", "#d4e157", "#cddc39", "#c0ca33", "#afb42b", "#9e9d24",
+            "#fff59d", "#fff176", "#ffee58", "#ffeb3b", "#fdd835", "#fbc02d", "#f9a825",
+            "#ffe082", "#ffd54f", "#ffca28", "#ffc107", "#ffb300", "#ffa000", "#ff8f00",
+            "#ffcc80", "#ffb74d", "#ffa726", "#ff9800", "#fb8c00", "#f57c00", "#ef6c00",
+            "#ffab91", "#ff8a65", "#ff7043", "#ff5722", "#f4511e", "#e64a19", "#d84315",
+            "#bcaaa4", "#a1887f", "#8d6e63", "#795548", "#6d4c41", "#5d4037", "#4e342e",
+            "#eeeeee", "#e0e0e0", "#bdbdbd", "#9e9e9e", "#757575", "#616161", "#424242",
+            "#b0bec5", "#90a4ae", "#78909c", "#607d8b", "#546e7a", "#455a64", "#37474f")
+    var color: String = ""
+    var mPortraitCode: String = ""
+    var mCallback: CodeChangeCallback? = null
+
+    interface CodeChangeCallback {
+        fun notify(portraitCode: String)
+    }
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -71,10 +67,10 @@ class RandomPortraitView : View {
         changeRandom()
         mBorderPaint.isAntiAlias = true
         mBorderPaint.style = Paint.Style.STROKE
-        if (color == 0) {
-            mBorderPaint.color = ContextCompat.getColor(context, R.color.colorPrimary)
+        if (TextUtils.isEmpty(color)) {
+            mBorderPaint.color = Color.parseColor("#009688")
         } else {
-            mBorderPaint.color = ContextCompat.getColor(context, color)
+            mBorderPaint.color = Color.parseColor(color)
         }
         mBorderPaint.strokeWidth = mBorderWidth.toFloat()
 
@@ -102,6 +98,9 @@ class RandomPortraitView : View {
             mCenterStr = "0" + mCenterStr
         }
         Log.e("blz", "中间数组：" + mCenterStr)
+        mPortraitCode = mHalfStr + mCenterStr + color
+        Log.e("blz", "头像代码：$mPortraitCode")
+        mCallback?.notify(mPortraitCode)
     }
 
     fun random() {
@@ -116,15 +115,15 @@ class RandomPortraitView : View {
         val piecePaint = Paint()
         piecePaint.isAntiAlias = true
         piecePaint.style = Paint.Style.FILL
-        if (color == 0) {
-            piecePaint.color = ContextCompat.getColor(context, R.color.colorPrimary)
+        if (TextUtils.isEmpty(color)) {
+            piecePaint.color = Color.parseColor("#009688")
         } else {
-            piecePaint.color = ContextCompat.getColor(context, color)
+            piecePaint.color = Color.parseColor(color)
         }
-        if (color == 0) {
-            mBorderPaint.color = ContextCompat.getColor(context, R.color.colorPrimary)
+        if (TextUtils.isEmpty(color)) {
+            mBorderPaint.color = Color.parseColor("#009688")
         } else {
-            mBorderPaint.color = ContextCompat.getColor(context, color)
+            mBorderPaint.color = Color.parseColor(color)
         }
         val pieceWidth = width / 5f
         val pieceHeight = height / 5f
@@ -154,8 +153,8 @@ class RandomPortraitView : View {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        val width = setMeasureSize(widthMeasureSpec, 233 / 2f)
-        val height = setMeasureSize(heightMeasureSpec, 233 / 2f)
+        val width = setMeasureSize(widthMeasureSpec, 77f)
+        val height = setMeasureSize(heightMeasureSpec, 77f)
         Log.e("blz", "宽度：" + width)
         Log.e("blz", "高度：" + height)
         setMeasuredDimension(width, height)
@@ -173,7 +172,6 @@ class RandomPortraitView : View {
         canvas?.let {
             it.save()
             if (mShowBorder) {
-                Log.e("blz","111")
                 if (mShowCircle) {
                     it.drawCircle(width / 2f, height / 2f, (minOf(width, height) - mBorderPaint.strokeWidth) / 2 - 1f, mBorderPaint)
                     it.drawCircle(width / 2f, height / 2f, minOf(width, height) / 2f, mPortraitPaint)
@@ -182,7 +180,6 @@ class RandomPortraitView : View {
                     it.drawRect(mBorderPaint.strokeWidth, mBorderPaint.strokeWidth, width - mBorderPaint.strokeWidth, height - mBorderPaint.strokeWidth, mPortraitPaint)
                 }
             } else {
-                Log.e("blz","222")
                 if (mShowCircle) {
                     it.drawCircle(width / 2f, height / 2f, minOf(width, height) / 2f, mPortraitPaint)
                 } else {
