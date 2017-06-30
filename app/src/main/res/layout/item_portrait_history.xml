@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:padding="6dp"
+                android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_light"
+        android:padding="8dp">
+
+        <com.bulingzhuang.randomportrait.RandomPortraitView
+            android:id="@+id/rpv"
+            android:layout_width="25.7dp"
+            android:layout_height="25.7dp"
+            android:layout_centerInParent="true"
+            app:borderWidth="1dp"
+            app:showBorder="false"
+            app:showCircle="false"
+            />
+    </RelativeLayout>
+</RelativeLayout>

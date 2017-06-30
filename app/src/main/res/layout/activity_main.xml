@@ -8,7 +8,7 @@
     tools:context="com.bulingzhuang.randomportrait.MainActivity">
 
     <RelativeLayout
-        android:id="@+id/ll"
+        android:id="@+id/ll_portrait"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -27,37 +27,79 @@
             />
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn"
+    <LinearLayout
+        android:id="@+id/ll_random"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="48dp"
-        android:text="随机"
-        android:textColor="@color/colorPrimary"/>
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/code"
+        <Button
+            android:id="@+id/btn_random"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="钻石抽奖"
+            android:textColor="@color/colorPrimary"/>
+
+        <Button
+            android:id="@+id/btn_random2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="钻石抽奖 *3"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll"
+        android:layout_below="@id/ll_portrait"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:background="@drawable/bg_light"
-        android:paddingBottom="8dp"
+        android:orientation="horizontal"
         android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="8dp"
-        android:text=""
-        android:textColor="@color/colorPrimary"/>
+        android:paddingRight="12dp">
+
+        <TextView
+            android:id="@+id/tv_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text=""
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:alpha="0.8"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="（长按复制代码）"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btn"
-        android:layout_below="@id/code">
+        android:layout_above="@id/ll_random"
+        android:layout_below="@id/ll_code">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            app:layoutManager="LinearLayoutManager"/>
     </RelativeLayout>
 
 </RelativeLayout>
